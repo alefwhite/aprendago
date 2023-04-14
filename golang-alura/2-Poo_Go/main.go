@@ -37,9 +37,12 @@ func main() {
 		fmt.Println(s)
 	*/
 
+	// Declarando um ponteiro do tipo ContaCorrente
 	// var contaDaCris *contas.ContaCorrente
 	// contaDaCris = new(contas.ContaCorrente)
 
+	// new Retorna um ponteiro para o tipo que ele recebe por parametro
+	// new é uma maneira de obter ponteiros para novos tipos
 	contaDaCris := new(contas.ContaCorrente)
 
 	contaDaCris.Titular = "Cris"
