@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"poo/clientes"
 	"poo/contas"
 )
 
@@ -16,16 +17,20 @@ func Somando(numeros ...int) int {
 
 func main() {
 	var contaDoGuilhermeDois contas.ContaCorrente = contas.ContaCorrente{}
-	contaDoGuilhermeDois.Titular = "Guilherme Dois"
+	contaDoGuilhermeDois.Titular = clientes.Titular{
+		Nome: "Guilherme Dois", CPF: "456", Profissao: "DEV JR",
+	}
 	fmt.Println(contaDoGuilhermeDois)
 
-	contaDoGuilherme := contas.ContaCorrente{Titular: "Guilherme",
+	contaDoGuilherme := contas.ContaCorrente{Titular: clientes.Titular{Nome: "Guilherme", CPF: "274", Profissao: "DEV PLENO"},
 		NumeroAgencia: 589, NumeroConta: 123456, Saldo: 125.5}
 
 	// Usado quando iremos informar todos os valores para a nossa struct
 	// contaDaBruna := contas.ContaCorrente{"Bruna", 222, 111222, 200}
 
-	contaDaBruna := contas.ContaCorrente{Titular: "Bruna", NumeroAgencia: 222, NumeroConta: 111222, Saldo: 200}
+	contaDaBruna := contas.ContaCorrente{Titular: clientes.Titular{Nome: "Bruna", CPF: "555", Profissao: "DEVOPS"},
+		NumeroAgencia: 222, NumeroConta: 111222, Saldo: 200,
+	}
 
 	fmt.Println(contaDoGuilherme)
 	fmt.Println(contaDaBruna)
@@ -45,7 +50,7 @@ func main() {
 	// new é uma maneira de obter ponteiros para novos tipos
 	contaDaCris := new(contas.ContaCorrente)
 
-	contaDaCris.Titular = "Cris"
+	contaDaCris.Titular = clientes.Titular{Nome: "Cris", CPF: "4545", Profissao: "QA"}
 	contaDaCris.Saldo = 500.00
 
 	fmt.Println(contaDaCris)  // Devolve o endereço da variavel

@@ -1,8 +1,10 @@
 package contas
 
+import "poo/clientes"
+
 // Metodos e Variaveis com letra minuscula no inicio que dizer que é privado
 type ContaCorrente struct {
-	Titular       string
+	Titular       clientes.Titular
 	NumeroAgencia int
 	NumeroConta   int
 	Saldo         float64
