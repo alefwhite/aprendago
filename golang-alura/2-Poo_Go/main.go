@@ -15,6 +15,14 @@ func Somando(numeros ...int) int {
 	return resultadoDaSoma
 }
 
+type verificarConta interface {
+	Sacar(valor float64) string
+}
+
+func PagarBoleto(conta verificarConta, valorDoBoleto float64) {
+	conta.Sacar(valorDoBoleto)
+}
+
 func main() {
 	var contaDoGuilhermeDois contas.ContaCorrente = contas.ContaCorrente{}
 	contaDoGuilhermeDois.Titular = clientes.Titular{
@@ -26,6 +34,12 @@ func main() {
 		NumeroAgencia: 589, NumeroConta: 123456}
 
 	contaDoGuilherme.Depositar(500)
+
+	PagarBoleto(
+		&contaDoGuilherme, 499,
+	)
+
+	fmt.Println(contaDoGuilherme.ObterSaldo())
 
 	// Usado quando iremos informar todos os valores para a nossa struct
 	// contaDaBruna := contas.ContaCorrente{"Bruna", 222, 111222, 200}
@@ -57,8 +71,8 @@ func main() {
 	contaDaCris.Titular = clientes.Titular{Nome: "Cris", CPF: "4545", Profissao: "QA"}
 	// contaDaCris.saldo = 500.00
 
-	fmt.Println(contaDaCris)  // Devolve o endereço da variavel
-	fmt.Println(&contaDaCris) // Devolve o local na memoria onde está a variavel
+	fmt.Println(contaDaCris)  // Devolve o endereço da variavel | Nome do ponteiro a ser utilizado
+	fmt.Println(&contaDaCris) // Devolve o local na memoria onde está a variavel | Nesse trecho é feito a referência de memoria da variavel ao ponteiro através do
 	fmt.Println(*contaDaCris) // Devolve o conteudo da variavel
 
 	fmt.Println(Somando(1))
@@ -85,4 +99,7 @@ func main() {
 	contaDoAlef := contas.ContaCorrente{Titular: clienteAlef, NumeroAgencia: 249, NumeroConta: 95399}
 	contaDoAlef.Depositar(4000)
 	fmt.Println(contaDoAlef)
+
+	contaDoDenis := contas.ContaPoupanca{Titular: clientes.Titular{Nome: "Denis", CPF: "123", Profissao: "SRE"}, NumeroAgencia: 123, NumeroConta: 321, Operacao: 1}
+	fmt.Println(contaDoDenis)
 }
