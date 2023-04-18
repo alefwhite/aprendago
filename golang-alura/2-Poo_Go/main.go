@@ -23,14 +23,18 @@ func main() {
 	fmt.Println(contaDoGuilhermeDois)
 
 	contaDoGuilherme := contas.ContaCorrente{Titular: clientes.Titular{Nome: "Guilherme", CPF: "274", Profissao: "DEV PLENO"},
-		NumeroAgencia: 589, NumeroConta: 123456, Saldo: 125.5}
+		NumeroAgencia: 589, NumeroConta: 123456}
+
+	contaDoGuilherme.Depositar(500)
 
 	// Usado quando iremos informar todos os valores para a nossa struct
 	// contaDaBruna := contas.ContaCorrente{"Bruna", 222, 111222, 200}
 
 	contaDaBruna := contas.ContaCorrente{Titular: clientes.Titular{Nome: "Bruna", CPF: "555", Profissao: "DEVOPS"},
-		NumeroAgencia: 222, NumeroConta: 111222, Saldo: 200,
+		NumeroAgencia: 222, NumeroConta: 111222,
 	}
+
+	contaDaBruna.Depositar(200)
 
 	fmt.Println(contaDoGuilherme)
 	fmt.Println(contaDaBruna)
@@ -51,7 +55,7 @@ func main() {
 	contaDaCris := new(contas.ContaCorrente)
 
 	contaDaCris.Titular = clientes.Titular{Nome: "Cris", CPF: "4545", Profissao: "QA"}
-	contaDaCris.Saldo = 500.00
+	// contaDaCris.saldo = 500.00
 
 	fmt.Println(contaDaCris)  // Devolve o endereço da variavel
 	fmt.Println(&contaDaCris) // Devolve o local na memoria onde está a variavel
@@ -75,5 +79,10 @@ func main() {
 	success2 := contaDoGuilherme.Transferir(300, &contaDaBruna)
 
 	fmt.Println(success, success2)
-	fmt.Println(contaDaCris.Saldo, contaDaBruna.Saldo)
+	fmt.Println(contaDaCris.ObterSaldo(), contaDaBruna.ObterSaldo())
+
+	clienteAlef := clientes.Titular{Nome: "Alef", CPF: "456.274.898-20", Profissao: "Dev Pleno"}
+	contaDoAlef := contas.ContaCorrente{Titular: clienteAlef, NumeroAgencia: 249, NumeroConta: 95399}
+	contaDoAlef.Depositar(4000)
+	fmt.Println(contaDoAlef)
 }
